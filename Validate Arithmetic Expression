@@ -1,0 +1,38 @@
+%option noyywrap
+%{
+ #include<stdio.h>
+int top= -1;
+int stack[40];
+int opr =0;
+int num =0;
+%}
+%%
+['('] {top++;
+       stack[top]='(';
+      }
+[')'] { if(stack[top]=='(' && top!= -1)
+            top--;
+        else { printf("invalid expression");
+                exit(0);
+             }
+       }
+[\t\n]+
+[+*/%] {opr++;}
+[-] {opr++;}
+[0-9]+ {num++;}
+. {printf("invalid expression");
+   exit(0);
+  }
+%%
+
+int main()
+{yylex();
+if(top==-1 && num==opr+1)
+{ printf("arithmetic expression is valid ");}
+else
+{  printf("invalid expression");}
+return 0;
+}
+
+ 
+
