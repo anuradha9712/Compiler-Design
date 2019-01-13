@@ -1,0 +1,14 @@
+%option noyywrap
+%{
+  int count=0;
+%}
+%%
+[a-zA-Z_]([A-Za-z_]|[0-9])* {count++;}
+%%
+int main()
+ { yyin=fopen("ex5.txt","r");
+   yylex();
+   printf("there are %d identifiers",count);
+  return 0;
+
+}
