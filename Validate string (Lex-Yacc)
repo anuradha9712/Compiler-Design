@@ -1,0 +1,35 @@
+============== Q11.L FILE=======================
+%option noyywrap
+%{
+#include "y.tab.h"
+%}
+%%
+a return A;
+b return B;
+.|[\n] return 0;
+%%
+
+=================Q11. Y file===============
+%{
+#include "lex.yy.c"
+int valid=1;
+%}
+%token A B
+%%
+start : A S B;
+S: A S B|;
+%%
+int yyerror()
+{
+valid=0;
+printf("invalid string\n");
+return 0;
+}
+int main()
+{
+ printf("enter string\n");
+yyparse();
+if(valid)
+ printf("valid string\n");
+}
+
