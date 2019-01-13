@@ -1,0 +1,20 @@
+%option noyywrap
+%{
+int charcount=0 , linecount=0;
+%}
+%%
+. charcount++;
+\n {linecount++, charcount++;}
+%%
+int main()
+{
+  yyin = fopen("exam.txt","r");
+  yylex();
+  printf("there are %d character in %d lines \n",charcount,linecount);
+  return 0;
+}
+
+//exam.txt file
+hii welcome to the
+ programming world
+ ffgdsgfdfsddf
