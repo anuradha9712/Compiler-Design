@@ -1,0 +1,20 @@
+%option noyywrap
+%{
+ #include<string.h>
+int longest=0;
+char longword[60];
+%}
+%%
+[a-zA-Z]+ {if (yyleng>longest)
+             { longest = yyleng;
+               strcpy(longword, yytext);
+             }
+          }
+.|\n;
+%%
+int main()
+{ yylex();
+  printf("the longest word was %s which was %d character long \n",longword,longe
+st);
+ return 0;
+}
