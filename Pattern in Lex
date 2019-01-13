@@ -1,0 +1,20 @@
+%option noyywrap
+%{
+ char* a;
+int i,j;
+%}
+%%
+%%
+int main(int argc, char* argv[])
+{
+ yylex();
+a=argv[1];
+for(i=strlen(a);i>0;i--)
+{
+ for(j=0;j<i;j++)
+{
+ printf("%c",a[j]);
+}
+printf("\n");
+}
+}
