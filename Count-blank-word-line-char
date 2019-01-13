@@ -1,0 +1,21 @@
+%option noyywrap
+%{
+ int wordcount= 0,charcount=0,linecount=0,blankcount=0;
+%}
+%%
+[ ] {blankcount++; wordcount++; charcount++;}
+. {charcount++;}
+\n {linecount++;charcount++; wordcount++;}
+%%
+int main()
+{
+ yyin=fopen("code.txt","r");
+yylex();
+printf("blankcount %d charcount %d linecount %d wordcount %d \n", blankcount,cha
+rcount,linecount,wordcount);
+}
+
+//CODE.TXT
+hello 100
+how r u
+i m fine
